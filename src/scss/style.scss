@@ -1,3 +1,41 @@
-body{
-  background: #f0f0f0;
+@import './global/color';
+@import './global/mixin';
+@import './global/base';
+@import './header';
+
+.section{
+  &-quiz{
+    padding: 100px 15px 0;
+    color: $whitePrimary;
+    @include backgroundImg;
+    background-image: url(../assets/icon/ilus-bg.svg);
+    height: 735px;
+    text-align: center;
+
+    .img-logo{
+      width: 160px;
+      margin: 0 auto;
+      object-fit: contain;
+    }
+
+    .quiz{
+      &__title{
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.5;
+        margin: 24px 0;
+      }
+      &__next-program{
+        font-size: 12px;
+        line-height: 1.5;
+        margin: 0 0 4px;
+      }
+      &__program{
+        max-width: 203px;
+        font-size: 14px;
+        line-height: 1.43;
+        margin: 0 auto 10px;
+      }
+    }
+  }
 }

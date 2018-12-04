@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="19px" viewBox="0 0 20 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>icon Back</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Navigation-Bar/Android/Double-Line" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-15.000000, -38.000000)" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Header-nav" stroke="#666666" stroke-width="1.5">
+            <g id="icon-Back" transform="translate(16.000000, 39.000000)">
+                <path d="M18,8.25 L0,8.25" id="Stroke-5"></path>
+                <path d="M7.4376606,16.5 L0.29237152,8.95546039 C-0.0974571734,8.56563169 -0.0974571734,7.93436831 0.29237152,7.54453961 L7.4376606,0" id="Stroke-7"></path>
+            </g>
+        </g>
+    </g>
+</svg>
