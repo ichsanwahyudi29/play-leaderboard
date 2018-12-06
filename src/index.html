@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Play Leaderboard</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
 </head>
 <body>
 
@@ -19,12 +18,481 @@
   <div id="wrapper">
 
     <section class="section-quiz">
-      <img class="img-responsive img-logo" src="./assets/img/logo.png" alt="NETPlay">
-      <h2 class="quiz__title">Chat, Vote, dan kumpulkan skor di NET. Play untuk menangkan hadiahnya!</h2>
-      <h4 class="quiz__next-program">Jadwal Program NET. Play selanjutnya:</h4>
-      <h3 class="quiz__program">Waktu Indonesia Bercanda 18.00 WIB</h3>
+      <div class="quiz">
+        <img class="img-responsive img-logo" src="./assets/img/logo.png" alt="NETPlay">
+        <h2 class="quiz__title">Chat, Vote, dan kumpulkan skor di NET. Play untuk menangkan hadiahnya!</h2>
+        <div class="quiz__program">
+          <h4 class="quiz__program-next">Jadwal Program NET. Play selanjutnya:</h4>
+          <h3 class="quiz__program-text">Waktu Indonesia Bercanda</h3>
+          <h3 class="quiz__program-clock">18.00 WIB</h3>
+          <button class="unf-btn unf-btn--small quiz__program-reminder">Ingatkan Saya</button>
+          <a class="quiz__program-all" href="">Lihat jadwal selengkapnya</a>
+        </div>
+        
+      </div>
+      
+      <div class="container">
+        <div class="content winner">
+          <img class="img-responsive content__img" src="./assets/img/quiz.jpg" alt="">
+          <div class="unf-card">
+            <h2 class="content__title content__title--winner">Pemenang Kuis Berhadiah Minggu Ini</h2>
+            <div class="content__list">
+              <div class="content__list-title">
+                <h6>Nama Pemenang</h6>
+                <h6>Hadiah</h6>
+              </div>
+              <div class="content__list-item">
+                <div class="row">
+                  <div class="col-6">
+                    Rachel Ariella
+                  </div>
+                  <div class="col-6">
+                    JBL Clip 2 Portable Bluetooth Speaker
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    Akan datang
+                  </div>
+                  <div class="col-6">
+                    Iphone XS
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    Akan datang
+                  </div>
+                  <div class="col-6">
+                    Arai Classic Helm
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </section>
 
+    <section class="section-ranking">
+      <div class="container">
+        <div class="content ranking">
+          <img class="img-responsive content__img" src="./assets/img/prize.jpg" alt="">
+          <div class="unf-card">
+            <h2 class="content__title content__title--ranking">Peringkat Minggu Ini</h2>
+            <div class="unf-searchbar">
+              <input id="js_search-ranking" type="text" class="unf-searchbar__input" placeholder="Cari Namamu">
+              <button id="js_reset-search-ranking" class="unf-searchbar__close"></button>
+            </div>
+            <div class="content__list">
+              <!-- <div id="js_ranking">
+                <div class="content__list-title">
+                  <h6><span id="js_ranking__count"></span> Peringkat Tertinggi</h6>
+                  <h6>Skor</h6>
+                </div>
+                <div id="js_ranking-list" class="content__list-item"></div>
+              </div>  -->
+              <!-- <div id="js_ranking-empty-search" class="ranking__not-found">
+                <div>
+                  <img src="./assets/img/search-not-found.png" alt="">
+                  <p>Hasil pencarian tidak ditemukan</p>
+                </div>
+              </div>  -->
+              <!-- <div id="js_ranking-loader" class="ranking__loader">
+                <div class="content__list-title">
+                  <h6>Peringkat Tertinggi</h6>
+                  <h6>Skor</h6>
+                </div>
+                <div class="content__list-item">
+                  <div class="row">
+                    <div class="col-10">
+                      <span class="unf-loader-line"></span>
+                    </div>
+                    <div class="col-2">
+                      <span class="unf-loader-line unf-loader-line--block"></span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-10">
+                      <span class="unf-loader-line"></span>
+                    </div>
+                    <div class="col-2">
+                      <span class="unf-loader-line unf-loader-line--block"></span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-10">
+                      <span class="unf-loader-line"></span>
+                    </div>
+                    <div class="col-2">
+                      <span class="unf-loader-line unf-loader-line--block"></span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-10">
+                      <span class="unf-loader-line"></span>
+                    </div>
+                    <div class="col-2">
+                      <span class="unf-loader-line unf-loader-line--block"></span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-10">
+                      <span class="unf-loader-line"></span>
+                    </div>
+                    <div class="col-2">
+                      <span class="unf-loader-line unf-loader-line--block"></span>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-how-to">
+      <div class="unf-tab">
+        <input type="radio" name="how-to" id="how-to-play" class="unf-tab__input" checked>
+        <input type="radio" name="how-to" id="how-to-get" class="unf-tab__input">
+        <ul class="unf-tab__list">
+          <li class="unf-tab__list-item">
+            <label class="unf-tab__list-item-label" for="how-to-play">Cara Bermain</label>
+          </li>
+          <li class="unf-tab__list-item">
+            <label class="unf-tab__list-item-label" for="how-to-get">Cara Dapat Skor</label>
+          </li>
+          <span id="js_unf-tab__indicator" class="unf-tab__indicator"></span>
+        </ul>
+        <div class="unf-tab__content container">
+          <section class="how-to-play">
+            <div class="how-to-play__list">
+              <img class="how-to-play__img" src="./assets/img/how-play1.png" alt="">
+              <p class="how-to-play__text">Tonton acara NET. TV favoritmu</p>
+            </div>
+            <div class="how-to-play__list">
+              <img class="how-to-play__img" src="./assets/img/how-play2.png" alt="">
+              <p class="how-to-play__text">Shake Shake aplikasi Tokopedia di ponselmu</p>
+            </div>
+            <div class="how-to-play__list">
+              <img class="how-to-play__img" src="./assets/img/how-play3.png" alt="">
+              <p class="how-to-play__text">Gabung ke NET. Play yang sedang berlangsung</p>
+            </div>
+            <div class="how-to-play__list">
+              <img class="how-to-play__img" src="./assets/img/how-play4.png" alt="">
+              <p class="how-to-play__text">Chat, Vote, dan kumpulkan skor untuk menangkan hadiahnya!</p>
+            </div>
+          </section>
+          <section class="how-to-get">
+            <div class="how-to-get__list">
+              <label class="unf-label unf-label--small unf-label--score">5 skor</label>
+              <p class="how-to-get__text">Tonton acara NET. TV favoritmu</p>
+            </div>
+            <div class="how-to-get__list">
+              <label class="unf-label unf-label--small unf-label--score">3 skor</label>
+              <p class="how-to-get__text">untuk setiap Vote</p>
+            </div>
+            <div class="how-to-get__list">
+              <label class="unf-label unf-label--small unf-label--score">10 skor</label>
+              <p class="how-to-get__text">untuk setiap jawaban Vote yang tepat</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-program">
+      <div class="container">
+        <div class="content program">
+          <h2 class="content__title content__title--program">Jadwal Program NET. Play</h2>
+          <span class="content__subtitle">Senin - Jumat</span>
+          <div class="content__list">
+            <div class="content__list-item">
+
+              <div class="row">
+                <div class="col-6">
+                  <h6 class="program__name">Sarah Sechan</h6>
+                  <span class="program__clock">09.00 WIB</span>
+                </div>
+                <div class="col-6">
+                  <button class="unf-btn unf-btn--small unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <h6 class="program__name">Breakout</h6>
+                  <span class="program__clock">14.00 WIB</span>
+                </div>
+                <div class="col-6">
+                  <button class="unf-btn unf-btn--small unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <h6 class="program__name">Waktu Indonesia Bercanda</h6>
+                  <span class="program__clock">18.00 WIB</span>
+                </div>
+                <div class="col-6">
+                  <button class="unf-btn unf-btn--small unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <h6 class="program__name">Ini Talk Show</h6>
+                  <span class="program__clock">19.00 WIB</span>
+                </div>
+                <div class="col-6">
+                  <button class="unf-btn unf-btn--small unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <h6 class="program__name">Tonight Show</h6>
+                  <span class="program__clock">21.00 WIB</span>
+                </div>
+                <div class="col-6">
+                  <button class="unf-btn unf-btn--small unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-faq">
+      <div class="container">
+        <div class="content faq">
+          <div class="unf-card">
+            <h2 class="content__title content__title--faq">FAQ</h2>
+            <div class="content__list content__list--faq">
+              <div class="content__list-item">
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="faq__question">
+                      Bagaimana cara join Play?
+                    </div>
+                    <div class="faq__answer">
+                      <ul>
+                        <ol>Tonton Acara NET. TV favoritmu</ol>
+                        <ol>Buka Tokopedia App & SHAKE-SHAKE HP-mu</ol>
+                        <ol>Gabung NET. Play setiap hari</ol>
+                        <ol>Chat, vote, kumpulkan skor, dan menangkan hadiahnya!</ol>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="faq__question">
+                      Kapan saja Play berlangsung?
+                    </div>
+                    <div class="faq__answer">
+                      <p>Setiap hari di acara-acara berikut:</p>
+                      <ul>
+                        <li>Sarah Sechan pukul 09.00 WIB</li>
+                        <li>Breakout pukul 14.00 WIB</li>
+                        <li>Waktu Indonesia Bercanda pukul 18.00 WIB</li>
+                        <li>Ini Talk Show pukul 19.00 WIB</li>
+                        <li>Tonight Show pukul 21.00 WIB</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="faq__question">
+                      Apa ketuntungan saya mengikuti Play?
+                    </div>
+                    <div class="faq__answer">
+                      <p>Dengan ikut chat & vote di Play setiap hari, kamu akan mendapatkan skor. 10 orang dengan skor tertinggi setiap
+                      minggunya akan mendapatkan hadiah.</p>
+                      <p>Kamu juga bisa mendapatkan hadiah langsung dengan mengikuti “Kuis Berhadiah”.</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <a id="js_all-faq" class="faq__read-all">Baca Selengkapnya</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="container footer">
+      <div class="footer__left">
+        © 2009-2018, PT Tokopedia
+      </div>
+      <div class="footer__right">
+        <ul>
+          <li>
+            <a href="" target="_blank" class="footer__connect-app footer__connect-app--appstore"></a>
+          </li>
+          <li>
+            <a href="" target="_blank" class="footer__connect-app footer__connect-app--playstore"></a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="" target="_blank" class="footer__socmed footer__socmed--fb"></a>
+          </li>
+          <li>
+            <a href="" target="_blank" class="footer__socmed footer__socmed--ig"></a>
+          </li>
+          <li>
+            <a href="" target="_blank" class="footer__socmed footer__socmed--tw"></a>
+          </li>
+          <li>
+            <a href="" target="_blank" class="footer__socmed footer__socmed--yt"></a>
+          </li>
+          <li>
+            <a href="" target="_blank" class="footer__socmed footer__socmed--gp"></a>
+          </li>
+          <li>
+            <a href="" target="_blank" class="footer__socmed footer__socmed--blog"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="unf-bottom-sheet">
+    <div class="unf-bottom-sheet__header">
+      <div id="js_close-bottom-sheet" class="unf-bottom-sheet__close"></div>
+      <h1 class="unf-bottom-sheet__title">Play FAQ</h1>
+    </div>
+    <div class="unf-bottom-sheet__content">
+      <div class="content__list content__list--faq">
+        <div class="content__list-item">
+      
+          <div class="row">
+            <div class="col-12">
+              <div class="faq__question">
+                Bagaimana cara join Play?
+              </div>
+              <div class="faq__answer">
+                <ul>
+                  <ol>Tonton Acara NET. TV favoritmu</ol>
+                  <ol>Buka Tokopedia App & SHAKE-SHAKE HP-mu</ol>
+                  <ol>Gabung NET. Play setiap hari</ol>
+                  <ol>Chat, vote, kumpulkan skor, dan menangkan hadiahnya!</ol>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-12">
+              <div class="faq__question">
+                Kapan saja Play berlangsung?
+              </div>
+              <div class="faq__answer">
+                <p>Setiap hari di acara-acara berikut:</p>
+                <ul>
+                  <li>Sarah Sechan pukul 09.00 WIB</li>
+                  <li>Breakout pukul 14.00 WIB</li>
+                  <li>Waktu Indonesia Bercanda pukul 18.00 WIB</li>
+                  <li>Ini Talk Show pukul 19.00 WIB</li>
+                  <li>Tonight Show pukul 21.00 WIB</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-12">
+              <div class="faq__question">
+                Apa ketuntungan saya mengikuti Play?
+              </div>
+              <div class="faq__answer">
+                <p>Dengan ikut chat & vote di Play setiap hari, kamu akan mendapatkan skor. 10 orang dengan skor tertinggi setiap
+                  minggunya akan mendapatkan hadiah.</p>
+                <p>Kamu juga bisa mendapatkan hadiah langsung dengan mengikuti “Kuis Berhadiah”.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="faq__question">
+                Apakah untuk ikut Play harus tonton TV dulu?
+              </div>
+              <div class="faq__answer">
+                <p>under construction</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-12">
+              <div class="faq__question">
+                Play bisa ditonton di acara apa saja?
+              </div>
+              <div class="faq__answer">
+                <p>under construction</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-12">
+              <div class="faq__question">
+                Kapan pengumuman pemenang Play?
+              </div>
+              <div class="faq__answer">
+                <p>under construction</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="faq__question">
+                Bagaimana cara saya tahu bila saya pemenang Play?
+              </div>
+              <div class="faq__answer">
+                <p>under construction</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-12">
+              <div class="faq__question">
+                Dimana saya bisa melihat pengumuman pemenang Play?
+              </div>
+              <div class="faq__answer">
+                <p>under construction</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-12">
+              <div class="faq__question">
+                Apakah Play hanya ada di NET. TV?
+              </div>
+              <div class="faq__answer">
+                <p>under construction</p>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    </div>
   </div>
 
 </body>

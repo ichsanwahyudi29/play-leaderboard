@@ -1,0 +1,9 @@
+.unf-card{
+  padding: 24px 16px 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px 0 $black12;
+  background-color: $whitePrimary;
+  // @include breakpoint(xs) {
+  //   border-radius: 0 0 4px 4px;
+  // }
+}

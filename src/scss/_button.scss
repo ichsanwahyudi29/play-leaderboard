@@ -1,0 +1,41 @@
+.unf-btn{
+  display: inline-block;
+  border-radius: 4px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0px 16px;
+  cursor: pointer;
+  box-sizing: border-box;
+  color: $blackPrimary;
+  outline: none;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  background: radial-gradient(circle, transparent 1%,$whitePrimary 1%) center center / 15000%$whitePrimary;
+  transition: background 0.8s ease 0s;
+
+  &:active{
+      background-color: $whiteHex1;
+      background-size: 100%;
+      transition: background 0s ease 0s;
+  }
+
+  &--small{
+    font-size: 0.85714rem;
+    height: 32px;
+    line-height: 16px;
+  }
+
+  &--primary{
+    color: $whitePrimary;
+    background: radial-gradient(circle, transparent 1%, rgb(66, 181, 73) 1%) center center / 15000% rgb(66, 181, 73);
+    &:active{
+      background-color: rgb(135, 213, 139);
+    }
+  }
+
+  &--secondary{
+    color: $blackDisabled;
+    border-color: $whiteHex3;
+  }
+}

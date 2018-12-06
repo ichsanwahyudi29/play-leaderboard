@@ -1,7 +1,9 @@
+
+
 html,
 body {
   font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'SPProText';
 }
 
 body {
@@ -19,6 +21,16 @@ body {
   box-sizing: border-box;
 }
 
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+li,
+ol{
+  padding: 0;
+}
+
 :after,
 :before {
   -webkit-box-sizing: border-box;
@@ -29,8 +41,7 @@ body {
 .container {
   padding-right: 15px;
   padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
   @include breakpoint(sm) {
     width: 750px;
   }
@@ -46,4 +57,59 @@ body {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-1{
+  flex: 0 0 8.333333%;
+  max-width: 8.333333%;
+}
+
+.col-2{
+  flex: 0 0 16.666667%;
+  max-width: 16.666667%;
+}
+
+.col-3{
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col-4{
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+}
+
+.col-6{
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col-8{
+  flex: 0 0 66.666667%;
+  max-width: 66.666667%;
+}
+
+.col-9{
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.col-10{
+  flex: 0 0 83.333333%;
+  max-width: 83.333333%;
+}
+
+.col-11{
+  flex: 0 0 91.666667%;
+  max-width: 91.666667%;
+}
+
+.col-12{
+  flex: 0 0 100%;
+  max-width: 100%;
 }

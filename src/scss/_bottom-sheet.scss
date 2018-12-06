@@ -1,0 +1,46 @@
+.unf-bottom-sheet{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 60;
+  background-color: $whitePrimary;
+  will-change: transform;
+  transition: transform 0.3s ease-out 0s, z-index 0.3s ease-out 0s;
+  transform: translateY(100%);
+  &--show{
+    transform: translateY(0);
+  }
+  &__header{
+    border-bottom: solid 1px $grayBorder;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 52px; 
+  }
+  &__close{
+    width: 52px;
+    height: 100%;
+    &::before{
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-image: url(../assets/icon/unf-close.svg);
+    }
+  }
+  &__title{
+    margin: 0;
+    font-size: $f16;
+    font-weight: 600;
+    line-height: 2;
+    color: $blackSecondary;
+  }
+  &__content{
+    padding: 0 16px;
+    overflow: auto;
+    height: calc(100vh - 48px);
+  }
+}

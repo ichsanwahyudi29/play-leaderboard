@@ -1,0 +1,70 @@
+.unf-tab{
+  $tab:&;
+  input[type=radio]{
+    display: none;
+
+    @for $i from 1 through 2 {
+      &:nth-of-type(#{$i}) {
+        &:checked {
+          ~ #{$tab}{
+            &__list {
+              li {
+                &:nth-of-type(#{$i}) {
+                  label {
+                    color: $green;
+                  }
+                }
+              }
+            }
+
+            &__content {
+              section {
+                &:nth-of-type(#{$i}) {
+                  display: block !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &__list{
+    position: relative;
+    display: flex;
+    border-bottom: solid 1px $grayBorder;
+    background: $whitePrimary;
+    user-select: none;
+    padding-left: 16px;
+    &-item{
+      margin-right: 16px;
+      list-style-type: none;
+      &-label{
+        padding: 16px 0;
+        display: block;
+        font-size: $f13;
+        font-weight: 600;
+        color: $blackDisabled;
+        cursor: pointer;
+        line-height: 1.14;
+        margin: 0;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  &__content{
+    margin-top: 16px;
+    section{
+      display: none;
+    }
+  }
+  &__indicator{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border: solid $green 1px;
+    will-change: transform;
+    transition: all ease 0.4s;
+  }
+}

@@ -1,41 +1,438 @@
+@font-face {
+    font-family: 'SPProText';
+    src: url(../assets/font/SF-Pro-Text-Regular.otf);
+}
+
 @import './global/color';
 @import './global/mixin';
 @import './global/base';
+@import './button';
+@import './card';
+@import './search';
+@import './bottom-sheet';
+@import './tab';
+@import './label';
+@import './loader';
 @import './header';
+@import './footer';
 
 .section{
   &-quiz{
-    padding: 100px 15px 0;
-    color: $whitePrimary;
+    padding: 100px 0 0;
     @include backgroundImg;
     background-image: url(../assets/icon/ilus-bg.svg);
-    height: 735px;
-    text-align: center;
-
-    .img-logo{
-      width: 160px;
-      margin: 0 auto;
-      object-fit: contain;
+    // height: 735px;
+    position: relative;
+    &::before,
+    &::after{
+      content: "";
+      position: absolute;
+      @include backgroundImg;
+      top: 0;
     }
 
-    .quiz{
-      &__title{
-        font-size: 16px;
+    &::before{
+      width: 96px;
+      height: 176px;
+      transform: translateY(420px);
+      left: 0;
+      background-image: url(../assets/icon/half-circle-l.svg);
+    }
+    
+    &::after{
+      width: 51px;
+      height: 149px;
+      transform: translateY(320px);
+      right: 0;
+      background-image: url(../assets/icon/half-circle-r.svg);
+    }
+  }
+  &-ranking{
+    padding-bottom: 32px;
+  }
+  &-how-to{
+    padding-bottom: 52px;
+  }
+  &-program{
+    padding-bottom: 54px;
+  }
+  &-faq{
+    @include backgroundImg;
+    background-position: top;
+    background-image: url(../assets/icon/ilus-faq.svg);
+    position: relative;
+  }
+}
+
+.content{
+  $c:&;
+  &__img{
+    border-radius: 4px 4px 0 0;
+  }
+  &__title{
+    font-size: 1.14286rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: $blackPrimary;
+    margin: 0;
+    display: flex;
+    &::before{
+      content: "";
+      display: inline-block;
+      margin-right: 12px;
+      @include backgroundImg;
+    }
+    &--winner{
+      &::before{
+        width: 22px;
+        height: 24px;
+        background-image: url(../assets/icon/winner.svg);
+      }
+    }
+    &--ranking{
+      &::before{
+        width: 28px;
+        height: 22px;
+        background-image: url(../assets/icon/ranking.svg);
+      }
+    }
+    &--program{
+      &::before{
+        width: 24px;
+        height: 26px;
+        background-image: url(../assets/icon/program.svg);
+      }
+    }
+    &--faq{
+      &:before{
+        width: 24px;
+        height: 24px;
+        background-image: url(../assets/icon/faq.svg);
+      }
+    }
+  }
+  &__subtitle{
+    display: block;
+    margin: -6px 0 24px;
+    font-size: $f13;
+    line-height: 1.54;
+    color: $blackPrimary;
+    margin-left: 36px;
+  }
+  &__list{
+    &-title{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 24px 0;
+      h6{
+        margin: 0;
+        font-size: $f12;
         font-weight: 600;
-        line-height: 1.5;
-        margin: 24px 0;
-      }
-      &__next-program{
-        font-size: 12px;
-        line-height: 1.5;
-        margin: 0 0 4px;
-      }
-      &__program{
-        max-width: 203px;
-        font-size: 14px;
-        line-height: 1.43;
-        margin: 0 auto 10px;
+        line-height: 1.33;
+        color: $blackPrimary;
+        &:last-child{
+          text-align: right;
+        }
       }
     }
+    &-item{
+      .row{
+        border-bottom: solid 1px $grayBorder;
+        padding: 16px 0;
+        &:first-child{
+          padding-top: 0;
+        }
+        &:last-child{
+          border-bottom: none;
+        }
+        .col-6{
+          font-size: $f14; 
+          line-height: 1.43; 
+          &:first-child{
+            font-weight: 500;
+          }
+          &:last-child{
+            text-align: right;
+          }
+        }
+      }
+    }
+    &--faq{
+      ul{
+        padding-left: 15px;
+        li,
+        ol{
+          margin-bottom: 4px;
+          padding-right: 10px;
+          &:last-child{
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      p{
+        margin-top: 0;
+        &:last-child{
+          margin: 0;
+        }
+      }
+
+      #{$c}{
+        &__list{
+          &-item{
+            .row{
+              &:first-child{
+                padding-top: 15px;
+              }
+              &:last-child{
+                border-bottom: solid 1px $grayBorder;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.quiz{
+  text-align: center;
+  color: $whitePrimary;
+  .img-logo{
+    width: 160px;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+  &__title{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 24px 0 0;
+  }
+  &__program{
+    margin: 24px 0 8px;
+    &-next{
+      font-size: 12px;
+      line-height: 1.5;
+      margin: 0 0 4px;
+      font-weight: 400;
+    }
+    &-text,
+    &-clock{
+      font-size: 14px;
+      line-height: 1.43;
+      margin: 0;
+    }
+    &-reminder{
+      width: 168px;
+      margin: 10px auto;
+      display: block;
+    }
+    &-all{
+      font-size: 12px;
+      line-height: 1.5;
+      text-decoration: underline;
+      color: $whitePrimary;
+    }
+  }
+}
+
+.winner{
+  margin-top: 32px;
+  position: relative;
+  z-index: 1;
+  .row{
+    &:first-child{
+      .col-6{
+        &:first-child{
+          color: $blackPrimary;
+        }
+        &:last-child{
+          color: $blackSecondary;
+        }
+      }
+    }
+    .col-6{
+      &:first-child{
+        color: $blackSecondary;
+      }
+      &:last-child{
+        color: $blackDisabled;
+      }
+    }
+  }
+}
+
+.ranking{
+  $ranking:&;
+  #js_ranking-list{
+    overflow: auto;
+    height: 256px;
+    margin: 0 -16px;
+    padding: 0 16px;
+  }
+  &__item{
+    display: flex;
+    &-num{
+      &::before{
+        // content: "";
+        position: absolute;
+      }
+    }
+  }
+  &__score{
+    text-align: right;
+    display: block;
+    color: $blackSecondary;
+  }
+  &__not-found{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 64px 0;
+    &--show{
+      display: flex;
+    }
+    img{
+      width: 133px;
+      margin: 0 auto;
+    }
+    p{
+      color: $blackSecondary;
+      text-align: center;
+    }
+  }
+  .row{
+    &:nth-child(1){
+      .col-9{
+        #{$ranking}{
+          &__item{
+            display: flex;
+            flex-wrap: wrap;
+            &-num{
+              position: relative;
+              &::before{
+                width: 34px;
+                height: 34px;
+                @include backgroundImg;
+                background-image: url(../assets/icon/rank1.svg);
+              }
+            }
+          }
+        //   &__num{
+        //     &::before{
+        //       width: 34px;
+        //       height: 34px;
+        //       @include backgroundImg;
+        //       background-image: url(../assets/icon/rank1.svg);
+        //     }
+        //   }
+        }
+      }
+    }
+  }
+}
+
+.how-to{
+  &-play,
+  &-get{
+    &__list{
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+    &__img{
+      min-width: 72px;
+      height: 72px;
+      margin-right: 16px;
+    }
+    &__text{
+      position: relative;
+      top: 2px;
+      line-height: 1.43;
+      margin: 0;
+      color: $blackPrimary;
+    }
+  }
+  &-get{
+    &__list{
+      align-items: initial;
+    }
+    &__text{
+      top: 0;
+      margin-left: 10px;
+    }
+  }
+}
+
+.program{
+  &__name{
+    font-size: $f14;
+    font-weight: 600;
+    color: $blackPrimary;
+    margin: 0;
+    line-height: 1.43;
+  }
+  &__clock{
+    font-size: $f13;
+    line-height: 1.54;
+    color: $blackPrimary;
+  }
+  .content{
+    &__list{
+      &-item{
+        .row{
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+.faq{
+  $faq:&;
+  position: relative;
+  top: -24px;
+  &__read-all{
+    color: $green;
+    text-align: center;
+    display: block;
+    padding: 16px 0;
+    cursor: pointer;
+  }
+  &__question{
+    color: $blackPrimary;
+    line-height: 1.43;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &::after{
+      content: "";
+      margin-left: 20px;
+      width: 14px;
+      height: 9px;
+      right: 0;
+      @include backgroundImg;
+      background-image: url(../assets/icon/arrow-down.svg);
+      transition: transform ease .3s;
+    }
+    &--open{
+      &::after{
+        transform: rotate(-180deg);
+      }
+    }
+  }
+  &__answer{
+    display: none;
+    margin-top: 16px;
+    font-size: $f12;
+    color: $blackSecondary;
+    line-height: 1.33;
   }
 }
