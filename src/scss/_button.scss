@@ -12,18 +12,26 @@
   border-style: none;
   border-color: initial;
   background: radial-gradient(circle, transparent 1%,$whitePrimary 1%) center center / 15000%$whitePrimary;
-  transition: background 0.8s ease 0s;
 
-  &:active{
+  &--animate{
+    transition: background 0.8s ease 0s;
+    &:active{
       background-color: $whiteHex1;
       background-size: 100%;
       transition: background 0s ease 0s;
+    }
   }
 
   &--small{
     font-size: 0.85714rem;
     height: 32px;
     line-height: 16px;
+  }
+
+  &--transparent{
+    border: solid $whitePrimary 1px;
+    color: $whitePrimary;
+    background: radial-gradient(circle, transparent 1%, transparent 1%) center center / 15000% transparent;
   }
 
   &--primary{
@@ -36,6 +44,6 @@
 
   &--secondary{
     color: $blackDisabled;
-    border-color: $whiteHex3;
+    border: solid $grayBorder 1px;
   }
 }

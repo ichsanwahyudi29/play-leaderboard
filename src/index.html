@@ -25,8 +25,8 @@
           <h4 class="quiz__program-next">Jadwal Program NET. Play selanjutnya:</h4>
           <h3 class="quiz__program-text">Waktu Indonesia Bercanda</h3>
           <h3 class="quiz__program-clock">18.00 WIB</h3>
-          <button class="unf-btn unf-btn--small quiz__program-reminder">Ingatkan Saya</button>
-          <a class="quiz__program-all" href="">Lihat jadwal selengkapnya</a>
+          <button class="unf-btn unf-btn--small quiz__program-reminder js_reminder-btn--same">Ingatkan Saya</button>
+          <a id="js_all-program" href="#leaderboard-program" class="quiz__program-all">Lihat jadwal selengkapnya</a>
         </div>
         
       </div>
@@ -74,7 +74,7 @@
       
     </section>
 
-    <section class="section-ranking">
+    <section id="leaderboard-ranking" class="section-ranking">
       <div class="container">
         <div class="content ranking">
           <img class="img-responsive content__img" src="./assets/img/prize.jpg" alt="">
@@ -98,7 +98,7 @@
                   <p>Hasil pencarian tidak ditemukan</p>
                 </div>
               </div>  -->
-              <!-- <div id="js_ranking-loader" class="ranking__loader">
+              <div id="js_ranking-loader" class="ranking__loader">
                 <div class="content__list-title">
                   <h6>Peringkat Tertinggi</h6>
                   <h6>Skor</h6>
@@ -145,7 +145,7 @@
                     </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>
@@ -202,7 +202,7 @@
       </div>
     </section>
 
-    <section class="section-program">
+    <section id="leaderboard-program" class="section-program">
       <div class="container">
         <div class="content program">
           <h2 class="content__title content__title--program">Jadwal Program NET. Play</h2>
@@ -216,7 +216,7 @@
                   <span class="program__clock">09.00 WIB</span>
                 </div>
                 <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder js_reminder-btn--same">Ingatkan Saya</button>
                 </div>
               </div>
 
@@ -226,7 +226,7 @@
                   <span class="program__clock">14.00 WIB</span>
                 </div>
                 <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
                 </div>
               </div>
 
@@ -236,7 +236,7 @@
                   <span class="program__clock">18.00 WIB</span>
                 </div>
                 <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
                 </div>
               </div>
 
@@ -246,7 +246,7 @@
                   <span class="program__clock">19.00 WIB</span>
                 </div>
                 <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
                 </div>
               </div>
 
@@ -256,7 +256,7 @@
                   <span class="program__clock">21.00 WIB</span>
                 </div>
                 <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
                 </div>
               </div>
             </div>
@@ -310,7 +310,7 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="faq__question">
-                      Apa ketuntungan saya mengikuti Play?
+                      Apa keuntungan saya mengikuti Play?
                     </div>
                     <div class="faq__answer">
                       <p>Dengan ikut chat & vote di Play setiap hari, kamu akan mendapatkan skor. 10 orang dengan skor tertinggi setiap
@@ -414,7 +414,7 @@
           <div class="row">
             <div class="col-12">
               <div class="faq__question">
-                Apa ketuntungan saya mengikuti Play?
+                Apa keuntungan saya mengikuti Play?
               </div>
               <div class="faq__answer">
                 <p>Dengan ikut chat & vote di Play setiap hari, kamu akan mendapatkan skor. 10 orang dengan skor tertinggi setiap
@@ -493,6 +493,18 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="unf-toaster">
+    <span class="unf-toaster__text"></span>
+  </div>
+
+  <div id="btn-to-ranking" class="floating-action">
+    <a href="#leaderboard-ranking" class="unf-chip floating-action--chip floating-action__ranking">Lihat Peringkat Minggu Ini</a>
+  </div>
+
+  <div id="btn-to-top" class="floating-action">
+    <a class="unf-chip floating-action--chip floating-action__back-top">Kembali ke atas</a>
   </div>
 
 </body>

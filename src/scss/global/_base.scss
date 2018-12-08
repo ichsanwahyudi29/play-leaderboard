@@ -45,12 +45,12 @@ ol{
   @include breakpoint(sm) {
     width: 750px;
   }
-  @include breakpoint(md) {
-    width: 970px;
-  }
-  @include breakpoint(lg) {
-    width: 1170px;
-  }
+  // @include breakpoint(md) {
+  //   width: 970px;
+  // }
+  // @include breakpoint(lg) {
+  //   width: 1170px;
+  // }
 }
 
 .img-responsive {

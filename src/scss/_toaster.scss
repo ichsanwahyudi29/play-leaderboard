@@ -1,0 +1,24 @@
+.unf-toaster{
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: rgb(243, 254, 243);
+  font-size: $f12;
+  line-height: 16px;
+  color: $blackSecondary;
+  z-index: 10;
+  padding: 23px 16px 24px;
+  border-top: 1px solid rgb(135, 213, 139);
+  transition: z-index 1s ease 0s, transform 2s ease 0s;
+  will-change: transfrom;
+  transform: translateY(80px);
+  &--error{
+    background-color: rgb(253, 235, 236);
+    border-color: rgb(240, 95, 104);
+  }
+  &--show{
+    transform: translateY(0px);
+    transition: z-index 1s ease 0s, transform 1s ease 0s;
+  }
+}

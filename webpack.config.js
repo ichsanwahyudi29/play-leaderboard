@@ -16,7 +16,7 @@ const webpackConfig = {
   },
   devtool: 'source-map',
   entry: {
-    main: ['./src/js/index.js', './src/scss/style.scss'],
+    main: ['./src/js/index.js', './src/scss/style.scss']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -62,10 +62,10 @@ const webpackConfig = {
             loader: 'file-loader',
             options: {
               name: '[name].ext',
-              outputPath: 'assets/font'
-            }
-          }
-        ]
+              outputPath: 'assets/font',
+            },
+          },
+        ],
       },
       {
         test: /\.(html)$/,
@@ -93,7 +93,7 @@ const webpackConfig = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-    })
+    }),
   ],
 };
 

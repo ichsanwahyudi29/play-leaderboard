@@ -30,7 +30,7 @@ const dataRanking = [
     skor: '9904',
   },
   {
-    ranking: '100',
+    ranking: '+9999',
     name: 'Mpok ella',
     skor: '9904',
   },
@@ -115,7 +115,7 @@ $(function handleSearchRanking() {
         }
       } else {
         initDataRanking();
-        handleSearchingNotFound(false)
+        handleSearchingNotFound(false);
       }
     },
   });
@@ -132,17 +132,65 @@ $(function handleResetSearchRanking() {
   });
 });
 
+// Reminder
+
+$(function handleBtnReminder() {
+  $('.js_reminder-btn--same').on({
+    click: function() {
+      let _self = $(this);
+      console.log(_self);
+      if (_self.hasClass('quiz__program-reminder')) {
+        _self.toggleClass('unf-btn--transparent');
+        if (_self.hasClass('unf-btn--transparent')) {
+          _self.text('Hapus Pengingat');
+          showToaster(
+            'Pengingat berhasil terpasang. Notifikasi akan dikirim saat NET. Play dimulai.'
+          );
+        } else {
+          _self.text('Ingatkan Saya');
+        }
+      }
+    },
+  });
+
+  // $('#js_reminder-btn--highlight').on({
+  //   click: function() {
+  //     console.log('clikk');
+  //   },
+  // });
+
+  $('.program__btn-reminder').on({
+    click: function() {
+      let _self = $(this);
+      console.log('click juga');
+      _self.toggleClass('unf-btn--primary').toggleClass('unf-btn--secondary');
+      // if (_self.attr('id') == 'js_reminder-btn--highlight') {
+      //   $('#js_reminder-btn-top').click();
+      // }
+      if (_self.hasClass('unf-btn--secondary')) {
+        _self.text('Hapus Pengingat');
+        showToaster(
+          'Pengingat berhasil terpasang. Notifikasi akan dikirim saat NET. Play dimulai.'
+        );
+      } else {
+        _self.text('Ingatkan Saya');
+      }
+    },
+  });
+});
+
+// FAQ
+
 $(function handleFaq() {
   $('#js_all-faq').on({
     click: function() {
-      var _self = $(this);
-      $('.unf-bottom-sheet').addClass('unf-bottom-sheet--show');
+      showBottomSheet(true);
     },
   });
 
   $('.faq__question').on({
     click: function() {
-      var _self = $(this);
+      let _self = $(this);
       _self.toggleClass('faq__question--open');
       if (_self.hasClass('faq__question--open')) {
         _self.siblings().slideDown(200);
@@ -153,13 +201,25 @@ $(function handleFaq() {
   });
 });
 
-$(function handleBottomSheet() {
+$(function handleCloseAllFaq() {
   $('#js_close-bottom-sheet').on({
     click: function() {
-      $('.unf-bottom-sheet').removeClass('unf-bottom-sheet--show');
+      showBottomSheet(false);
     },
   });
 });
+
+// BottomSheet
+
+function showBottomSheet(bool) {
+  if (bool) {
+    $('.unf-bottom-sheet').addClass('unf-bottom-sheet--show');
+  } else {
+    $('.unf-bottom-sheet').removeClass('unf-bottom-sheet--show');
+  }
+}
+
+// Tab
 
 $(function initTabIndicator() {
   let tab = $('input[name=how-to]');
@@ -167,7 +227,7 @@ $(function initTabIndicator() {
     if (tab[i].checked) {
       let id = tab[i].id;
       let label = $(`.unf-tab__list-item-label[for=${id}]`)[0];
-       handleIndicatorTab(label);
+      handleIndicatorTab(label);
       break;
     }
   }
@@ -179,7 +239,7 @@ $(function handleChangeTab() {
       let _self = $(this);
       let id = _self[0].id;
       let label = $(`.unf-tab__list-item-label[for=${id}]`)[0];
-       handleIndicatorTab(label);
+      handleIndicatorTab(label);
     },
   });
 });
@@ -189,4 +249,100 @@ function handleIndicatorTab(e) {
     width: e.offsetWidth,
     transform: `translateX(${e.offsetLeft}px)`,
   });
+}
+
+// Toaster
+
+function showToaster(text = '', isError = false, autoClose = true) {
+  var toaster = $('.unf-toaster');
+  let toasterMessage = $('.unf-toaster__text');
+
+  toaster.click(function(e) {
+    toaster.removeClass('unf-toaster--show');
+  });
+
+  if (isError) {
+    toaster.addClass('unf-toaster--error');
+  } else {
+    toaster.removeClass('unf-toaster--error');
+  }
+
+  toasterMessage.text(text);
+  toaster.addClass('unf-toaster--show');
+
+  if (autoClose) {
+    setTimeout(function() {
+      toaster.removeClass('unf-toaster--show');
+    }, 3000);
+  }
+}
+
+// Floating Btn
+
+$(function name(params) {
+  $('#js_all-program').on({
+    click: function() {
+      let href = $(this).attr('href');
+      smoothScroll(href);
+    },
+  });
+});
+
+$(function onClickFloatingBtn() {
+  $('.floating-action--chip').on({
+    click: function() {
+      let href = $(this).attr('href');
+      smoothScroll(href);
+    },
+  });
+});
+
+function smoothScroll(href = false) {
+  $('html, body').animate(
+    {
+      scrollTop: href ? $(href).offset().top - 55 : 0,
+    },
+    500
+  );
+}
+
+$(function initFloatingBtnRanking(params) {
+  if ($(window).scrollTop() < 100) {
+    showFloating($('#btn-to-ranking'), true);
+  }
+});
+
+$(function handleFloatinBtnRanking() {
+  let lastScroll = 0;
+  $(window).on({
+    scroll: function() {
+      let scroll = $(this).scrollTop();
+
+      if (scroll < 100) {
+        showFloating($('#btn-to-ranking'), true);
+        showFloating($('#btn-to-top'), false);
+      } else {
+        showFloating($('#btn-to-ranking'), false);
+        if (scroll > lastScroll) {
+          showFloating($('#btn-to-top'), false);
+          // console.log('downscroll code');
+        } else {
+          showFloating($('#btn-to-top'), true);
+          // console.log('upscroll code');
+        }
+      }
+
+      lastScroll = scroll;
+
+      // console.log($(this).scrollTop());
+    },
+  });
+});
+
+function showFloating(el, bool) {
+  if (bool) {
+    el.addClass('floating-action--show');
+  } else {
+    el.removeClass('floating-action--show');
+  }
 }

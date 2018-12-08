@@ -13,15 +13,18 @@
 @import './tab';
 @import './label';
 @import './loader';
+@import './toaster';
+@import './chip';
 @import './header';
 @import './footer';
 
 .section{
   &-quiz{
-    padding: 100px 0 0;
+    // margin-top: -100px;
+    padding-top: 100px;
+    // padding-top: 152px;
     @include backgroundImg;
     background-image: url(../assets/icon/ilus-bg.svg);
-    // height: 735px;
     position: relative;
     &::before,
     &::after{
@@ -48,19 +51,38 @@
     }
   }
   &-ranking{
-    padding-bottom: 32px;
+    padding: 32px 0;
+    position: relative;
+    &:before{
+      content: '';
+      position: absolute;
+      transform: translateY(230px);
+      width: 100%;
+      height: 100%;
+      background-size: 100% 52%;
+      background-repeat: no-repeat;
+      background-image: url(../assets/icon/ilus-ranking.svg);
+    }
   }
   &-how-to{
     padding-bottom: 52px;
   }
   &-program{
-    padding-bottom: 54px;
+    padding-bottom: 32px;
   }
   &-faq{
-    @include backgroundImg;
-    background-position: top;
-    background-image: url(../assets/icon/ilus-faq.svg);
     position: relative;
+    padding: 0 0 32px;
+    &:before{
+      content: '';
+      position: absolute;
+      transform: translateY(60px);
+      width: 100%;
+      height: 100%;
+      @include backgroundImg;
+      background-position: top;
+      background-image: url(../assets/icon/ilus-faq.svg);
+    }
   }
 }
 
@@ -68,6 +90,9 @@
   $c:&;
   &__img{
     border-radius: 4px 4px 0 0;
+    + .unf-card{
+      border-radius: 0 0 4px 4px;
+    }
   }
   &__title{
     font-size: 1.14286rem;
@@ -124,7 +149,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 24px 0;
+      margin: 24px 0 10px;
       h6{
         margin: 0;
         font-size: $f12;
@@ -139,10 +164,7 @@
     &-item{
       .row{
         border-bottom: solid 1px $grayBorder;
-        padding: 16px 0;
-        &:first-child{
-          padding-top: 0;
-        }
+        padding: 15px 0;
         &:last-child{
           border-bottom: none;
         }
@@ -159,6 +181,7 @@
       }
     }
     &--faq{
+      margin-top: 10px;
       ul{
         padding-left: 15px;
         li,
@@ -265,20 +288,44 @@
 }
 
 .ranking{
+  position: relative;
   $ranking:&;
   #js_ranking-list{
     overflow: auto;
-    height: 256px;
+    height: 285px;
     margin: 0 -16px;
     padding: 0 16px;
   }
   &__item{
     display: flex;
+    flex-wrap: wrap;
+    color: $blackPrimary;
+    font-weight: 600;
+    line-height: 1.43;
     &-num{
+      flex: 0 0 40px;
+      max-width: 40px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &::before{
-        // content: "";
+        content: "";
         position: absolute;
+        left: -1px;
+        width: 100%;
+        height: 40px;
+        @include backgroundImg;
+        transform: translateY(1px);
       }
+      span{
+        position: relative;
+      }
+    }
+    &-name{
+      flex: 0 0 77%;
+      max-width: 77%;
+      padding-left: 10px;
     }
   }
   &__score{
@@ -309,28 +356,45 @@
       .col-9{
         #{$ranking}{
           &__item{
-            display: flex;
-            flex-wrap: wrap;
             &-num{
-              position: relative;
               &::before{
-                width: 34px;
-                height: 34px;
-                @include backgroundImg;
                 background-image: url(../assets/icon/rank1.svg);
               }
             }
           }
-        //   &__num{
-        //     &::before{
-        //       width: 34px;
-        //       height: 34px;
-        //       @include backgroundImg;
-        //       background-image: url(../assets/icon/rank1.svg);
-        //     }
-        //   }
         }
       }
+    }
+    &:nth-child(2){
+      .col-9{
+        #{$ranking}{
+          &__item{
+            &-num{
+              &::before{
+                background-image: url(../assets/icon/rank2.svg);
+              }
+            }
+          }
+        }
+      }
+    }
+    &:nth-child(3){
+      .col-9{
+        #{$ranking}{
+          &__item{
+            &-num{
+              &::before{
+                background-image: url(../assets/icon/rank3.svg);
+              }
+            }
+          }
+        }
+      }
+    }
+    .col-3{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
   }
 }
@@ -383,6 +447,10 @@
     line-height: 1.54;
     color: $blackPrimary;
   }
+  &__btn-reminder{
+    min-width: 130px;
+    padding: 0 12px;
+  }
   .content{
     &__list{
       &-item{
@@ -397,7 +465,6 @@
 .faq{
   $faq:&;
   position: relative;
-  top: -24px;
   &__read-all{
     color: $green;
     text-align: center;
@@ -434,5 +501,53 @@
     font-size: $f12;
     color: $blackSecondary;
     line-height: 1.33;
+  }
+}
+
+.floating-action{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  transform: translateY(50px);
+  z-index: 100;
+  will-change: transform;
+  transition: transform .4s linear;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &--show{
+    transform: translateY(-20px);
+  }
+  a{
+    display: flex;
+    align-items: center;
+  }
+  &__ranking{
+    color: $blackPrimary;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 6px 0 rgba(88, 71, 71, 0.12);
+    background-image: linear-gradient(121deg, #ffffff, #9de1d7 97%);
+    border: none;
+    &::before{
+      content: '';
+      display: block;
+      margin-right: 8px;
+      width: 28px;
+      height: 22px;
+      background-image: url(../assets/icon/ranking.svg);
+    }
+  }
+  &__back-top{
+    &:after{
+      content: '';
+      display: block;
+      margin-left: 8px;
+      width: 13px;
+      height: 9px;
+      transform: rotate(180deg);
+      background-image: url(../assets/icon/arrow-down.svg);
+    }
   }
 }
