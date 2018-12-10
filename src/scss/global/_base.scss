@@ -4,15 +4,15 @@ html,
 body {
   font-size: 14px;
   font-family: 'SPProText';
+  &.lock {
+    overflow: hidden;
+  }
 }
 
 body {
   margin: 0;
   color: #333;
   background-color: $whitePrimary;
-  &.fixed {
-    overflow: hidden;
-  }
 }
 
 * {
@@ -43,14 +43,8 @@ ol{
   padding-left: 15px;
   margin: 0 auto;
   @include breakpoint(sm) {
-    width: 750px;
+    width: 500px;
   }
-  // @include breakpoint(md) {
-  //   width: 970px;
-  // }
-  // @include breakpoint(lg) {
-  //   width: 1170px;
-  // }
 }
 
 .img-responsive {

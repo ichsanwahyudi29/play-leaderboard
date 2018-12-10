@@ -40,14 +40,31 @@ $(document).ready(function() {
   initDataRanking();
 });
 
+function appendRankingElem(el) {
+  $('#js_ranking').empty();
+  $('#js_ranking').append(el);
+}
+
 function initDataRanking(params) {
   resultsRanking(dataRanking);
   $('#js_ranking__count').text(dataRanking.length);
 }
 
 function resultsRanking(obj) {
+  const listContainer = `
+    <div id="js_ranking-list">
+      <div class="content__list-title">
+        <h6><span id="js_ranking__count"></span> Peringkat Tertinggi</h6>
+        <h6>Skor</h6>
+      </div>
+      <div id="js_ranking-list-item" class="content__list-item"></div>
+    </div> 
+  `;
+
+  appendRankingElem(listContainer);
+
   $('#js_ranking__count').text('');
-  $('#js_ranking-list').empty();
+  $('#js_ranking-list-item').empty();
   for (const key of obj) {
     const listRank = `
       <div class="row">
@@ -67,18 +84,74 @@ function resultsRanking(obj) {
       </div>
     `;
 
-    $('#js_ranking-list').append(listRank);
+    $('#js_ranking-list-item').append(listRank);
   }
 }
 
-function handleSearchingNotFound(type) {
-  if (type) {
-    $('#js_ranking').hide();
-    $('#js_ranking-empty-search').addClass('ranking__not-found--show');
-  } else {
-    $('#js_ranking').show();
-    $('#js_ranking-empty-search').removeClass('ranking__not-found--show');
-  }
+function handleEmptyResult() {
+  const emptyResult = `
+    <div class="ranking__not-found">
+      <div>
+        <img src="./assets/img/search-not-found.png" alt="">
+        <p>Hasil pencarian tidak ditemukan</p>
+      </div>
+    </div> 
+  `;
+  appendRankingElem(emptyResult);
+}
+
+function handleLoaderResult() {
+  const loader = `
+    <div id="js_ranking-loader" class="ranking__loader">
+      <div class="content__list-title">
+        <h6>Peringkat Tertinggi</h6>
+        <h6>Skor</h6>
+      </div>
+      <div class="content__list-item">
+        <div class="row">
+          <div class="col-10">
+            <span class="unf-loader-line"></span>
+          </div>
+          <div class="col-2">
+            <span class="unf-loader-line unf-loader-line--block"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-10">
+            <span class="unf-loader-line"></span>
+          </div>
+          <div class="col-2">
+            <span class="unf-loader-line unf-loader-line--block"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-10">
+            <span class="unf-loader-line"></span>
+          </div>
+          <div class="col-2">
+            <span class="unf-loader-line unf-loader-line--block"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-10">
+            <span class="unf-loader-line"></span>
+          </div>
+          <div class="col-2">
+            <span class="unf-loader-line unf-loader-line--block"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-10">
+            <span class="unf-loader-line"></span>
+          </div>
+          <div class="col-2">
+            <span class="unf-loader-line unf-loader-line--block"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  appendRankingElem(loader);
 }
 
 $(function handleSearchRanking() {
@@ -97,6 +170,7 @@ $(function handleSearchRanking() {
       let val = $(this).val();
       if (val) {
         if (e.which == 13) {
+          $(this).blur()
           for (let i = 0; i < dataRanking.length; i++) {
             for (key in dataRanking[i]) {
               if (
@@ -107,15 +181,23 @@ $(function handleSearchRanking() {
               }
             }
           }
-          if (results != 0) {
-            resultsRanking(results);
-          } else {
-            handleSearchingNotFound(true);
-          }
+          handleLoaderResult();
+          setTimeout(() => {
+            if (results != 0) {
+              resultsRanking(results);
+            } else {
+              handleEmptyResult();
+            }
+          }, 3000);
         }
       } else {
-        initDataRanking();
-        handleSearchingNotFound(false);
+        if (e.which == 13) {
+          $(this).blur()
+          handleLoaderResult();
+          setTimeout(() => {
+            initDataRanking();
+          }, 3000);
+        }
       }
     },
   });
@@ -136,48 +218,47 @@ $(function handleResetSearchRanking() {
 
 $(function handleBtnReminder() {
   $('.js_reminder-btn--same').on({
-    click: function() {
-      let _self = $(this);
-      console.log(_self);
-      if (_self.hasClass('quiz__program-reminder')) {
-        _self.toggleClass('unf-btn--transparent');
-        if (_self.hasClass('unf-btn--transparent')) {
-          _self.text('Hapus Pengingat');
-          showToaster(
-            'Pengingat berhasil terpasang. Notifikasi akan dikirim saat NET. Play dimulai.'
-          );
-        } else {
-          _self.text('Ingatkan Saya');
+    click: function(e) {
+      let triggerBtn = $('.js_reminder-btn--same');
+      for (let i = 0; i < triggerBtn.length; i++) {
+        let _self = $(triggerBtn[i]);
+        if (_self.hasClass('quiz__program-reminder')) {
+          _self.toggleClass('unf-btn--transparent');
+          let condition = _self.hasClass('unf-btn--transparent');
+          onChangeBtnReminder(_self, condition);
+        }
+
+        if (_self.hasClass('program__btn-reminder')) {
+          _self
+            .toggleClass('unf-btn--primary')
+            .toggleClass('unf-btn--secondary');
+          let condition = _self.hasClass('unf-btn--secondary');
+          onChangeBtnReminder(_self, condition);
         }
       }
     },
   });
 
-  // $('#js_reminder-btn--highlight').on({
-  //   click: function() {
-  //     console.log('clikk');
-  //   },
-  // });
-
-  $('.program__btn-reminder').on({
+  $('.js_reminder-btn').on({
     click: function() {
       let _self = $(this);
-      console.log('click juga');
       _self.toggleClass('unf-btn--primary').toggleClass('unf-btn--secondary');
-      // if (_self.attr('id') == 'js_reminder-btn--highlight') {
-      //   $('#js_reminder-btn-top').click();
-      // }
-      if (_self.hasClass('unf-btn--secondary')) {
-        _self.text('Hapus Pengingat');
-        showToaster(
-          'Pengingat berhasil terpasang. Notifikasi akan dikirim saat NET. Play dimulai.'
-        );
-      } else {
-        _self.text('Ingatkan Saya');
-      }
+      let condition = _self.hasClass('unf-btn--secondary');
+      onChangeBtnReminder(_self, condition);
     },
   });
 });
+
+function onChangeBtnReminder(el, bool) {
+  if (bool) {
+    el.text('Hapus Pengingat');
+    showToaster(
+      'Pengingat berhasil terpasang. Notifikasi akan dikirim saat NET. Play dimulai.'
+    );
+  } else {
+    el.text('Ingatkan Saya');
+  }
+}
 
 // FAQ
 
@@ -209,12 +290,35 @@ $(function handleCloseAllFaq() {
   });
 });
 
+// $(window).resize(function(e) {
+//   console.log('resize');
+//   console.log($(this).height());
+// });
+
 // BottomSheet
 
+function detectWindowResize() {
+  $(window).resize(function(e) {
+    console.log('resize');
+    console.log($(this).height());
+    return $(this).height();
+  });
+}
+
 function showBottomSheet(bool) {
+  console.log(window.innerHeight);
+
   if (bool) {
+    $('html, body').addClass('lock');
     $('.unf-bottom-sheet').addClass('unf-bottom-sheet--show');
+    console.log(detectWindowResize());
+    $('.unf-bottom-sheet').css({
+      // height: calc(detectWindowResize() - 48)
+      height: detectWindowResize(),
+    });
   } else {
+    $('html, body').removeClass('lock');
+    // document.body.removeEventListener('touchmove', freezeVp, false);
     $('.unf-bottom-sheet').removeClass('unf-bottom-sheet--show');
   }
 }
@@ -300,7 +404,7 @@ $(function onClickFloatingBtn() {
 function smoothScroll(href = false) {
   $('html, body').animate(
     {
-      scrollTop: href ? $(href).offset().top - 55 : 0,
+      scrollTop: href ? $(href).offset().top - 40 : 0,
     },
     500
   );
@@ -325,16 +429,15 @@ $(function handleFloatinBtnRanking() {
         showFloating($('#btn-to-ranking'), false);
         if (scroll > lastScroll) {
           showFloating($('#btn-to-top'), false);
-          // console.log('downscroll code');
         } else {
-          showFloating($('#btn-to-top'), true);
-          // console.log('upscroll code');
+          if (!$('#js_search-ranking').is(':focus')){
+            showFloating($('#btn-to-top'), true);
+          }
+         
         }
       }
 
       lastScroll = scroll;
-
-      // console.log($(this).scrollTop());
     },
   });
 });

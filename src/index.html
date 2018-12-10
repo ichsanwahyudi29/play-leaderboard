@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Play Leaderboard</title>
+  <link rel="shortcut icon" href="https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/icon144.png">
 </head>
 <body>
 
-  <header class="unf-navbar">
+  <!-- <header class="unf-navbar">
     <div class="unf-navbar__back"></div>
     <div class="unf-navbar__title">
       <h1>NET. Play Minggu Ini</h1>
     </div>
-  </header>
+  </header> -->
 
   <div id="wrapper">
 
@@ -84,67 +85,13 @@
               <input id="js_search-ranking" type="text" class="unf-searchbar__input" placeholder="Cari Namamu">
               <button id="js_reset-search-ranking" class="unf-searchbar__close"></button>
             </div>
-            <div class="content__list">
-              <!-- <div id="js_ranking">
+            <div id="js_ranking" class="content__list">
+              <div id="js_ranking-list">
                 <div class="content__list-title">
                   <h6><span id="js_ranking__count"></span> Peringkat Tertinggi</h6>
                   <h6>Skor</h6>
                 </div>
-                <div id="js_ranking-list" class="content__list-item"></div>
-              </div>  -->
-              <!-- <div id="js_ranking-empty-search" class="ranking__not-found">
-                <div>
-                  <img src="./assets/img/search-not-found.png" alt="">
-                  <p>Hasil pencarian tidak ditemukan</p>
-                </div>
-              </div>  -->
-              <div id="js_ranking-loader" class="ranking__loader">
-                <div class="content__list-title">
-                  <h6>Peringkat Tertinggi</h6>
-                  <h6>Skor</h6>
-                </div>
-                <div class="content__list-item">
-                  <div class="row">
-                    <div class="col-10">
-                      <span class="unf-loader-line"></span>
-                    </div>
-                    <div class="col-2">
-                      <span class="unf-loader-line unf-loader-line--block"></span>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-10">
-                      <span class="unf-loader-line"></span>
-                    </div>
-                    <div class="col-2">
-                      <span class="unf-loader-line unf-loader-line--block"></span>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-10">
-                      <span class="unf-loader-line"></span>
-                    </div>
-                    <div class="col-2">
-                      <span class="unf-loader-line unf-loader-line--block"></span>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-10">
-                      <span class="unf-loader-line"></span>
-                    </div>
-                    <div class="col-2">
-                      <span class="unf-loader-line unf-loader-line--block"></span>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-10">
-                      <span class="unf-loader-line"></span>
-                    </div>
-                    <div class="col-2">
-                      <span class="unf-loader-line unf-loader-line--block"></span>
-                    </div>
-                  </div>
-                </div>
+                <div id="js_ranking-list-item" class="content__list-item"></div>
               </div>
             </div>
           </div>
@@ -226,7 +173,7 @@
                   <span class="program__clock">14.00 WIB</span>
                 </div>
                 <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder js_reminder-btn">Ingatkan Saya</button>
                 </div>
               </div>
 
@@ -236,7 +183,7 @@
                   <span class="program__clock">18.00 WIB</span>
                 </div>
                 <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder js_reminder-btn">Ingatkan Saya</button>
                 </div>
               </div>
 
@@ -246,7 +193,7 @@
                   <span class="program__clock">19.00 WIB</span>
                 </div>
                 <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder js_reminder-btn">Ingatkan Saya</button>
                 </div>
               </div>
 
@@ -256,7 +203,7 @@
                   <span class="program__clock">21.00 WIB</span>
                 </div>
                 <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder">Ingatkan Saya</button>
+                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder js_reminder-btn">Ingatkan Saya</button>
                 </div>
               </div>
             </div>
@@ -499,12 +446,12 @@
     <span class="unf-toaster__text"></span>
   </div>
 
-  <div id="btn-to-ranking" class="floating-action">
-    <a href="#leaderboard-ranking" class="unf-chip floating-action--chip floating-action__ranking">Lihat Peringkat Minggu Ini</a>
-  </div>
-
   <div id="btn-to-top" class="floating-action">
     <a class="unf-chip floating-action--chip floating-action__back-top">Kembali ke atas</a>
+  </div>
+
+  <div id="btn-to-ranking" class="floating-action">
+    <a href="#leaderboard-ranking" class="unf-chip floating-action--chip floating-action__ranking">Lihat Peringkat Minggu Ini</a>
   </div>
 
 </body>

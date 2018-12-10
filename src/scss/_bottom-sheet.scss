@@ -7,7 +7,7 @@
   background-color: $whitePrimary;
   will-change: transform;
   transition: transform 0.3s ease-out 0s, z-index 0.3s ease-out 0s;
-  transform: translateY(100%);
+  transform: translateY(150%);
   &--show{
     transform: translateY(0);
   }
@@ -42,5 +42,13 @@
     padding: 0 16px;
     overflow: auto;
     height: calc(100vh - 48px);
+    // .content{
+    //   &__list{
+    //     &-item{
+    //         overflow: auto;
+    //         height: calc(100vh - 62px);
+    //     }
+    //   }
+    // }
   }
 }
