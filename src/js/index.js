@@ -45,7 +45,7 @@ function appendRankingElem(el) {
   $('#js_ranking').append(el);
 }
 
-function initDataRanking(params) {
+function initDataRanking() {
   resultsRanking(dataRanking);
   $('#js_ranking__count').text(dataRanking.length);
 }
@@ -290,35 +290,12 @@ $(function handleCloseAllFaq() {
   });
 });
 
-// $(window).resize(function(e) {
-//   console.log('resize');
-//   console.log($(this).height());
-// });
-
-// BottomSheet
-
-function detectWindowResize() {
-  $(window).resize(function(e) {
-    console.log('resize');
-    console.log($(this).height());
-    return $(this).height();
-  });
-}
-
 function showBottomSheet(bool) {
-  console.log(window.innerHeight);
-
   if (bool) {
     $('html, body').addClass('lock');
     $('.unf-bottom-sheet').addClass('unf-bottom-sheet--show');
-    console.log(detectWindowResize());
-    $('.unf-bottom-sheet').css({
-      // height: calc(detectWindowResize() - 48)
-      height: detectWindowResize(),
-    });
   } else {
     $('html, body').removeClass('lock');
-    // document.body.removeEventListener('touchmove', freezeVp, false);
     $('.unf-bottom-sheet').removeClass('unf-bottom-sheet--show');
   }
 }
@@ -383,7 +360,7 @@ function showToaster(text = '', isError = false, autoClose = true) {
 
 // Floating Btn
 
-$(function name(params) {
+$(function handleGotoAllProgram() {
   $('#js_all-program').on({
     click: function() {
       let href = $(this).attr('href');
@@ -410,7 +387,7 @@ function smoothScroll(href = false) {
   );
 }
 
-$(function initFloatingBtnRanking(params) {
+$(function initFloatingBtnRanking() {
   if ($(window).scrollTop() < 100) {
     showFloating($('#btn-to-ranking'), true);
   }
@@ -433,7 +410,6 @@ $(function handleFloatinBtnRanking() {
           if (!$('#js_search-ranking').is(':focus')){
             showFloating($('#btn-to-top'), true);
           }
-         
         }
       }
 
