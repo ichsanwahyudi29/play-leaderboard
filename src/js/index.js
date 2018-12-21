@@ -8,18 +8,19 @@ if (enviroment === 'production') {
   domain = 'https://chat-staging.tokopedia.com';
 }
 
-
 // fetch('https://gql.tokopedia.com', {
 //   method: 'POST',
 //   credentials: 'include',
 //   body: '{"query":"{\\n\\tprofile {\\n\\t\\tuser_id\\n\\t}\\n}"}',
 // }).then(response => response.json()).then((json) => {
 //   userId = json.profile.user_id;
-// }); 
+// });
 
-const endpointGetPrizeQuizWinner = '/gmf/api/v2/leaderboard/weekly_prize_quiz_winners';
+const endpointGetPrizeQuizWinner =
+  '/gmf/api/v2/leaderboard/weekly_prize_quiz_winners';
 const endpointGetEvents = '/gcn/api/v2/leaderboard/get_events';
-const endpointGetLeaderRanking = '/gmf/api/v2/leaderboard/weekly_top_ten_winners';
+const endpointGetLeaderRanking =
+  '/gmf/api/v2/leaderboard/weekly_top_ten_winners';
 
 $(document).ready(function() {
   initDataRanking();
@@ -32,84 +33,83 @@ function appendRankingElem(el) {
   $('#js_ranking').append(el);
 }
 
-function initDataRanking() {  
+function initDataRanking() {
   $.ajax({
     url: domain + endpointGetLeaderRanking,
-    success: function (response) {
-      weekly_winners = response.data.weekly_winners
+    success: function(response) {
+      weekly_winners = response.data.weekly_winners;
       resultsRanking(weekly_winners);
       $('#js_ranking__count').text(weekly_winners.length);
     },
-    error: function () {
+    error: function() {
       handleEmptyResult();
-    }    
-  });     
+    },
+  });
 }
 
 function initSearchDataRanking(winner_name) {
   $.ajax({
     url: domain + endpointGetLeaderRanking,
     data: { winner_name: winner_name },
-    success: function (response) {
-      weekly_winners = response.data.weekly_winners
+    success: function(response) {
+      weekly_winners = response.data.weekly_winners;
       if (weekly_winners.length !== 0) {
         resultsRanking(weekly_winners);
       } else {
         handleEmptyResult();
       }
     },
-    error: function () {
+    error: function() {
       handleEmptyResult();
-    }
+    },
   });
 }
 
 function initDataShowEvents() {
   var settings = {
-    "crossDomain": true,
-    "method": "GET",
-    "headers": {
+    crossDomain: true,
+    method: 'GET',
+    headers: {
       /* "Authorization": "bearer _fruNGSdSDKnhg7PDDoDCQ", */
-      "cache-control": "no-cache"
+      'cache-control': 'no-cache',
     },
     url: domain + endpointGetEvents,
-    success: function (response) {
-      data = response.data
+    success: function(response) {
+      data = response.data;
       resultNextEvent(data.next_event);
       resultsAllEvents(data.all_events);
       handleBtnReminder();
-    }    
-  }  
-  $.ajax(settings);    
+    },
+  };
+  $.ajax(settings);
 }
 
 function initDataPrizeQuizWinner() {
   var settings = {
-    "crossDomain": true,
-    "url": domain + endpointGetPrizeQuizWinner,
-    "method": "GET",
-    "headers": {
-      "cache-control": "no-cache",
+    crossDomain: true,
+    url: domain + endpointGetPrizeQuizWinner,
+    method: 'GET',
+    headers: {
+      'cache-control': 'no-cache',
     },
     url: domain + endpointGetPrizeQuizWinner,
-    success: function (response) {      
+    success: function(response) {
       resultsQuizWinner(response.data.weekly_prize_quiz_winner);
-    }    
-  }  
-  $.ajax(settings);  
+    },
+  };
+  $.ajax(settings);
 }
 
 function resultNextEvent(data) {
+  if (data === null) {
+    return false;
+  }
 
-  if (data === null ) {
-    return false
-  }  
-  
   const reminderTrue = `<button class="unf-btn unf-btn--small quiz__program-reminder js_reminder-btn unf-btn--transparent">Hapus Pengingat</button>`;
 
   const reminderFalse = `<button class="unf-btn unf-btn--small quiz__program-reminder js_reminder-btn">Ingatkan Saya</button>`;
 
-  const reminderButton = (data.is_reminded ? reminderTrue : reminderFalse);
+  const reminderButton = data.is_reminded ? reminderTrue : reminderFalse;
 
   const nextEvent = `
     <h4 class="quiz__program-next">Jadwal Program NET. Play selanjutnya:</h4>
@@ -128,17 +128,16 @@ function resultNextEvent(data) {
     
   `;
 
-  $('#next-event').append(nextEvent);  
+  $('#next-event').append(nextEvent);
 }
 
 function resultsAllEvents(obj) {
   const reminderFalse = `<button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder js_reminder-btn">Ingatkan Saya</button>`;
 
   const reminderTrue = `<button class="unf-btn unf-btn--small unf-btn--animate program__btn-reminder js_reminder-btn unf-btn--secondary">Hapus Pengingat</button>`;
-  
 
   for (const key of obj) {
-    const reminderButton = (key.is_reminded ? reminderTrue : reminderFalse);
+    const reminderButton = key.is_reminded ? reminderTrue : reminderFalse;
     const listAllEvents = `
       <div class="row">
         <div class="col-6">
@@ -156,7 +155,7 @@ function resultsAllEvents(obj) {
     `;
 
     $('#all-events-list-item').append(listAllEvents);
-  }     
+  }
 }
 
 function resultsQuizWinner(obj) {
@@ -173,7 +172,7 @@ function resultsQuizWinner(obj) {
     `;
 
     $('#quiz-winner-list-item').append(listPrizeQuizWinner);
-  }    
+  }
 }
 
 function resultsRanking(obj) {
@@ -213,6 +212,21 @@ function resultsRanking(obj) {
 
     $('#js_ranking-list-item').append(listRank);
   }
+
+  $('#js_ranking-list-item .row').each(function() {
+    var rank = $(this).find('.ranking__item-num')
+    var val = rank.find('span').text();
+
+    if (val == 1) {
+      rank.addClass('first');
+    }
+    if (val == 2) {
+      rank.addClass('second');
+    }
+    if (val == 3) {
+      rank.addClass('third');
+    }
+  });
 }
 
 function handleEmptyResult() {
@@ -295,15 +309,15 @@ $(function handleSearchRanking() {
     keypress: function(e) {
       const results = [];
       let val = $(this).val();
-      if (val) {        
+      if (val) {
         if (e.which == 13) {
           $(this).blur();
           handleLoaderResult();
-          initSearchDataRanking(val)
+          initSearchDataRanking(val);
         }
       } else {
         if (e.which == 13) {
-          $(this).blur()
+          $(this).blur();
           handleLoaderResult();
           initDataRanking();
         }
@@ -332,7 +346,7 @@ function handleBtnReminder() {
       for (let i = 0; i < triggerBtn.length; i++) {
         let _self = $(triggerBtn[i]);
         let parent = _self.parent();
-        let eventId = $(parent).data("event-id");        
+        let eventId = $(parent).data('event-id');
         if (_self.hasClass('quiz__program-reminder')) {
           _self.toggleClass('unf-btn--transparent');
           let condition = _self.hasClass('unf-btn--transparent');
@@ -354,13 +368,13 @@ function handleBtnReminder() {
     click: function() {
       let _self = $(this);
       let parent = _self.parent();
-      let eventId = $(parent).data("event-id");
+      let eventId = $(parent).data('event-id');
       _self.toggleClass('unf-btn--primary').toggleClass('unf-btn--secondary');
       let condition = _self.hasClass('unf-btn--secondary');
       onChangeBtnReminder(_self, condition, eventId);
     },
   });
-};
+}
 
 function onChangeBtnReminder(el, bool, eventId) {
   if (bool) {
@@ -379,7 +393,7 @@ function onChangeBtnReminder(el, bool, eventId) {
 
     // $.ajax(settings).done(function (response) {
     //   console.log(response);
-    // });    
+    // });
     el.text('Hapus Pengingat');
     showToaster(
       'Pengingat berhasil terpasang. Notifikasi akan dikirim saat NET. Play dimulai.'
@@ -537,7 +551,7 @@ $(function handleFloatinBtnRanking() {
         if (scroll > lastScroll) {
           showFloating($('#btn-to-top'), false);
         } else {
-          if (!$('#js_search-ranking').is(':focus')){
+          if (!$('#js_search-ranking').is(':focus')) {
             showFloating($('#btn-to-top'), true);
           }
         }

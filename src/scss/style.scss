@@ -363,45 +363,30 @@
     }
   }
   .row{
-    &:nth-child(1){
-      .col-9{
-        #{$ranking}{
-          &__item{
-            &-num{
+    .col-9{
+      #{$ranking}{
+        &__item{
+          &-num{
+            &.first{
               &::before{
-                background-image: url(../assets/icon/rank1.svg);
+              background-image: url(../assets/icon/rank1.svg);
               }
             }
-          }
-        }
-      }
-    }
-    &:nth-child(2){
-      .col-9{
-        #{$ranking}{
-          &__item{
-            &-num{
+            &.second{
               &::before{
                 background-image: url(../assets/icon/rank2.svg);
               }
             }
-          }
-        }
-      }
-    }
-    &:nth-child(3){
-      .col-9{
-        #{$ranking}{
-          &__item{
-            &-num{
+            &.third{
               &::before{
                 background-image: url(../assets/icon/rank3.svg);
               }
-            }
+            }     
           }
         }
       }
     }
+    
     .col-3{
       display: flex;
       align-items: center;
