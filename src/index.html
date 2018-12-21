@@ -22,12 +22,7 @@
       <div class="quiz">
         <img class="img-responsive img-logo" src="./assets/img/logo.png" alt="NETPlay">
         <h2 class="quiz__title">Chat, Vote, dan kumpulkan skor di NET. Play untuk menangkan hadiahnya!</h2>
-        <div class="quiz__program">
-          <h4 class="quiz__program-next">Jadwal Program NET. Play selanjutnya:</h4>
-          <h3 class="quiz__program-text">Waktu Indonesia Bercanda</h3>
-          <h3 class="quiz__program-clock">18.00 WIB</h3>
-          <button class="unf-btn unf-btn--small quiz__program-reminder js_reminder-btn--same">Ingatkan Saya</button>
-          <a id="js_all-program" href="#leaderboard-program" class="quiz__program-all">Lihat jadwal selengkapnya</a>
+        <div class="quiz__program" id="next-event">
         </div>
         
       </div>
@@ -43,30 +38,7 @@
                 <h6>Hadiah</h6>
               </div>
               <div class="content__list-item">
-                <div class="row">
-                  <div class="col-6">
-                    Rachel Ariella
-                  </div>
-                  <div class="col-6">
-                    JBL Clip 2 Portable Bluetooth Speaker
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-6">
-                    Akan datang
-                  </div>
-                  <div class="col-6">
-                    Iphone XS
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-6">
-                    Akan datang
-                  </div>
-                  <div class="col-6">
-                    Arai Classic Helm
-                  </div>
-                </div>
+                <div id="quiz-winner-list-item"></div>
               </div>
             </div>
           </div>
@@ -156,56 +128,7 @@
           <span class="content__subtitle">Senin - Jumat</span>
           <div class="content__list">
             <div class="content__list-item">
-
-              <div class="row">
-                <div class="col-6">
-                  <h6 class="program__name">Sarah Sechan</h6>
-                  <span class="program__clock">09.00 WIB</span>
-                </div>
-                <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder js_reminder-btn--same">Ingatkan Saya</button>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-6">
-                  <h6 class="program__name">Breakout</h6>
-                  <span class="program__clock">14.00 WIB</span>
-                </div>
-                <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder js_reminder-btn">Ingatkan Saya</button>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-6">
-                  <h6 class="program__name">Waktu Indonesia Bercanda</h6>
-                  <span class="program__clock">18.00 WIB</span>
-                </div>
-                <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder js_reminder-btn">Ingatkan Saya</button>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-6">
-                  <h6 class="program__name">Ini Talk Show</h6>
-                  <span class="program__clock">19.00 WIB</span>
-                </div>
-                <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder js_reminder-btn">Ingatkan Saya</button>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-6">
-                  <h6 class="program__name">Tonight Show</h6>
-                  <span class="program__clock">21.00 WIB</span>
-                </div>
-                <div class="col-6">
-                  <button class="unf-btn unf-btn--small unf-btn--animate unf-btn--primary program__btn-reminder js_reminder-btn">Ingatkan Saya</button>
-                </div>
-              </div>
+              <div id="all-events-list-item"></div>
             </div>
           </div>
         </div>
