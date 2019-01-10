@@ -37,7 +37,8 @@ const dataRanking = [
 ];
 
 $(document).ready(function() {
-  initDataRanking();
+  // initDataRanking();
+  handleLoaderResult()
 });
 
 function appendRankingElem(el) {

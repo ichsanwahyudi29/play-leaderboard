@@ -12,7 +12,7 @@ const webpackConfig = {
   mode: process.env.NODE_ENV,
   devServer: {
     contentBase: './dist',
-    port: 3333,
+    port: 3000,
   },
   devtool: 'source-map',
   entry: {
