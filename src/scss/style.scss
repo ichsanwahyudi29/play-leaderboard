@@ -588,7 +588,8 @@
           height: 100%;
           width: 100%;
           object-fit: cover;
-          background-repeat: repeat-x;
+          background-repeat: no-repeat;
+          background-position: center;
           background-color: $black12;
         }
       }
@@ -635,7 +636,7 @@
             padding: 0 16px;
           }
           @include breakpoint(sm) {
-            max-width: 500px;
+            max-width: 400px;
             margin: 0 auto;
           }
           .info{
@@ -652,10 +653,14 @@
                 @include backgroundImg;
               }
               &__text{
-                font-size: 10px;
+                font-size: 12px;
                 font-weight: normal;
                 line-height: 1.4;
-                color: $grayText;
+                // color: $grayText;
+                color: $darkGray1;
+                @media (max-width: 320px) {
+                  font-size: 10px;
+                }
               }
             }
           }
@@ -663,11 +668,11 @@
       }
     }
     &-bottom{
-      display: flex;
+      /* display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100%;
+      height: 100%; */
       text-align: center;
       iframe{
         height: 100%;
@@ -676,6 +681,8 @@
       }
       .bottom{
         &--wrapper{
+          margin-top: 24px;
+          // margin-top: 32px;
           width: 100%;
           @include breakpoint(xxs) {
             padding: 0 32px;
@@ -684,8 +691,9 @@
             padding: 0 16px;
           }
           @include breakpoint(sm) {
-            max-width: 500px;
-            margin: 0 auto;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
           }
           .wrapper{
             &--body{
@@ -694,7 +702,7 @@
                 font-size: 16px;
                 font-weight: 600;
                 line-height: 1.25;
-                color: #4a4a4a;
+                color: $darkGray1;
                 margin: 0 auto;
               }
               &__desc{
@@ -708,9 +716,11 @@
         }
         &--btn{
           margin-top: 8px;
-          &__block{
-            width: 100%;
-          }
+          /* @include breakpoint(sm) {
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+          } */
         }
       }
     }
