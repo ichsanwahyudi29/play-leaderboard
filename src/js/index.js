@@ -36,7 +36,7 @@ const dataRanking = [
   },
 ];
 
-$(document).ready(function() {
+$(document).ready(function () {
   initDataRanking();
 });
 
@@ -156,7 +156,7 @@ function handleLoaderResult() {
 
 $(function handleSearchRanking() {
   $('#js_search-ranking').on({
-    input: function(e) {
+    input: function (e) {
       let _self = $(this);
 
       if (_self.val()) {
@@ -165,7 +165,7 @@ $(function handleSearchRanking() {
         _self.siblings().removeClass('unf-searchbar__close--show');
       }
     },
-    keypress: function(e) {
+    keypress: function (e) {
       const results = [];
       let val = $(this).val();
       if (val) {
@@ -205,7 +205,7 @@ $(function handleSearchRanking() {
 
 $(function handleResetSearchRanking() {
   $('#js_reset-search-ranking').on({
-    click: function() {
+    click: function () {
       let input = $('#js_search-ranking');
       input.val('');
       input.siblings().removeClass('unf-searchbar__close--show');
@@ -218,7 +218,7 @@ $(function handleResetSearchRanking() {
 
 $(function handleBtnReminder() {
   $('.js_reminder-btn--same').on({
-    click: function(e) {
+    click: function (e) {
       let triggerBtn = $('.js_reminder-btn--same');
       for (let i = 0; i < triggerBtn.length; i++) {
         let _self = $(triggerBtn[i]);
@@ -240,7 +240,7 @@ $(function handleBtnReminder() {
   });
 
   $('.js_reminder-btn').on({
-    click: function() {
+    click: function () {
       let _self = $(this);
       _self.toggleClass('unf-btn--primary').toggleClass('unf-btn--secondary');
       let condition = _self.hasClass('unf-btn--secondary');
@@ -264,13 +264,13 @@ function onChangeBtnReminder(el, bool) {
 
 $(function handleFaq() {
   $('#js_all-faq').on({
-    click: function() {
+    click: function () {
       showBottomSheet(true);
     },
   });
 
   $('.faq__question').on({
-    click: function() {
+    click: function () {
       let _self = $(this);
       _self.toggleClass('faq__question--open');
       if (_self.hasClass('faq__question--open')) {
@@ -284,7 +284,7 @@ $(function handleFaq() {
 
 $(function handleCloseAllFaq() {
   $('#js_close-bottom-sheet').on({
-    click: function() {
+    click: function () {
       showBottomSheet(false);
     },
   });
@@ -316,7 +316,7 @@ $(function initTabIndicator() {
 
 $(function handleChangeTab() {
   $('.unf-tab__input').on({
-    change: function() {
+    change: function () {
       let _self = $(this);
       let id = _self[0].id;
       let label = $(`.unf-tab__list-item-label[for=${id}]`)[0];
@@ -338,7 +338,7 @@ function showToaster(text = '', isError = false, autoClose = true) {
   var toaster = $('.unf-toaster');
   let toasterMessage = $('.unf-toaster__text');
 
-  toaster.click(function(e) {
+  toaster.click(function (e) {
     toaster.removeClass('unf-toaster--show');
   });
 
@@ -352,7 +352,7 @@ function showToaster(text = '', isError = false, autoClose = true) {
   toaster.addClass('unf-toaster--show');
 
   if (autoClose) {
-    setTimeout(function() {
+    setTimeout(function () {
       toaster.removeClass('unf-toaster--show');
     }, 3000);
   }
@@ -362,7 +362,7 @@ function showToaster(text = '', isError = false, autoClose = true) {
 
 $(function handleGotoAllProgram() {
   $('#js_all-program').on({
-    click: function() {
+    click: function () {
       let href = $(this).attr('href');
       smoothScroll(href);
     },
@@ -371,7 +371,7 @@ $(function handleGotoAllProgram() {
 
 $(function onClickFloatingBtn() {
   $('.floating-action--chip').on({
-    click: function() {
+    click: function () {
       let href = $(this).attr('href');
       smoothScroll(href);
     },
@@ -396,7 +396,7 @@ $(function initFloatingBtnRanking() {
 $(function handleFloatinBtnRanking() {
   let lastScroll = 0;
   $(window).on({
-    scroll: function() {
+    scroll: function () {
       let scroll = $(this).scrollTop();
 
       if (scroll < 100) {
@@ -407,7 +407,7 @@ $(function handleFloatinBtnRanking() {
         if (scroll > lastScroll) {
           showFloating($('#btn-to-top'), false);
         } else {
-          if (!$('#js_search-ranking').is(':focus')){
+          if (!$('#js_search-ranking').is(':focus')) {
             showFloating($('#btn-to-top'), true);
           }
         }
@@ -424,4 +424,329 @@ function showFloating(el, bool) {
   } else {
     el.removeClass('floating-action--show');
   }
+}
+
+
+/* Pre Event js */
+var dataPreEvent = {
+  quiz: 'Ini Talkshow',
+  cover: '',
+  page: 1,
+  score: '12.450',
+  time: '01 14 2019 20:00:00',
+  login: false,
+  reminder: false
+}
+
+$(document).ready(function () {
+  var url = window.location.pathname
+  if (url === '/pre-event.html') {
+    generatePreEventPage()
+  }
+})
+
+function generatePreEventPage() {
+  $('.gc-pre-event.wrapper').html('')
+  var content = `
+      <section class="section-top section-cover">
+        <div class="top--head">
+            <div class="btn-icon btn-icon--close" id="quiz-btn-close"></div>
+            <div class="btn-icon btn-icon--leader ${ dataPreEvent.page === 1 ? 'hide' : ''}" id="quiz-btn-leaderboard"></div>
+        </div>
+        <img class="cover--img img-responsive" src="./assets/img/cover-img.png"/>
+      </section>
+      `
+  if (dataPreEvent.page === 1) {
+    content += `
+        <section class="section-bottom">
+            <div class="bottom--wrapper">
+                <div class="wrapper--body">
+                    <div class="wrapper--body__title">
+                        Toppers, Berani Ikutan Kuis 
+                        <br/>
+                        ${dataPreEvent.quiz}?
+                    </div>
+                    <p class="wrapper--body__desc">
+                        Jawab pertanyaan dan raih poin untuk berkesempatan memenangkan hadiah berlimpah.
+                    </p>
+                </div>
+                <a class="unf-btn unf-btn--primary unf-btn--medium unf-btn--block unf-btn--animate bottom--btn" data-type="page" id="action-btn">Mulai Kuis</a>
+            </div>
+        </section>
+      `
+
+      $('.gc-pre-event.wrapper').html(content)
+      $('#quiz-btn-leaderboard').hide();
+  }
+  else {
+    content += `
+
+      <section class="section-mid section-info">
+        <div class="mid--container">
+          <div class="unf-card info--card">
+            <div class="info--card__icon"></div>
+            <div class="info--card__text">
+              Selamat, <b>${dataPreEvent.score} poin</b> akan langsung ditambahkan untuk Anda saat NET. Play dimulai
+            </div>
+        </div>
+        </div>
+      </section>
+      <section class="section-bottom">
+          <div class="bottom--wrapper">
+              <div class="wrapper--body">
+                  <div class="wrapper--body__title">
+                      NET. Play Dimulai Dalam
+                  </div>
+                  <div class="time-counter--container">
+                      <div class="counter--head">
+                          <span>Jam</span>
+                          <span class="counter--separator"></span>
+                          <span>Menit</span>
+                          <span class="counter--separator"></span>
+                          <span>Detik</span>
+                      </div>
+                      
+                      <div class="counter--time">
+                          <span class="counter--number">
+                              <div>
+                                  <div class="counter--digit" id="counter-hour-1">
+                                      <div>0</div>
+                                      <div>0</div>
+                                  </div>
+                                  <div class="counter--digit" id="counter-hour-2">
+                                      <div>0</div>
+                                      <div>0</div>
+                                  </div>
+                              </div>
+                          </span>
+                          <span class="counter--separator">:</span>
+                          <span class="counter--number">
+                              <div>
+                                  <div class="counter--digit" id="counter-minute-1">
+                                      <div>0</div>
+                                      <div>0</div>
+                                  </div>
+                                  <div class="counter--digit" id="counter-minute-2">
+                                      <div>0</div>
+                                      <div>0</div>
+                                  </div>
+                              </div>
+                          </span>
+                          <span class="counter--separator">:</span>
+                          <span class="counter--number">
+                              <div>
+                                  <div class="counter--digit" id="counter-second-1">
+                                      <div>0</div>
+                                      <div>0</div>
+                                  </div>
+                                  <div class="counter--digit" id="counter-second-2">
+                                      <div>0</div>
+                                      <div>0</div>
+                                  </div>
+                              </div>
+                          </span>
+                      </div>
+                  </div>
+              </div>
+        ${
+      dataPreEvent.login ?
+        dataPreEvent.reminder ?
+          `<a class="unf-btn unf-btn--secondary unf-btn--medium unf-btn--block unf-btn--animate bottom--btn" id="action-btn" data-type="delete-reminder">Hapus Pengingat</</a>`
+          :
+          `<a class="unf-btn unf-btn--primary unf-btn--medium unf-btn--block unf-btn--animate bottom--btn" id="action-btn" data-type="add-reminder">Ingatkan Saya</a>`
+        :
+        `<a class="unf-btn unf-btn--primary unf-btn--medium unf-btn--block unf-btn--animate bottom--btn" id="action-btn" data-type="login">Masuk Untuk Ingatkan Saya</a>`
+      }
+                  
+        </div>
+      </section>  
+      `
+
+    $('.gc-pre-event.wrapper').html(content)
+    $('#quiz-btn-leaderboard').show();
+  }
+
+}
+
+$(document).on('click', '#quiz-btn-close', function () {
+  window.location.href = "http://tokopedia.com"
+})
+$(document).on('click', '#quiz-btn-leaderboard', function () {
+  window.location.href = "./"
+})
+
+$(document).on('click', '#action-btn', function () {
+  var $this = $(this)
+  var type = $this.data('type')
+
+  switch (type) {
+    case 'page':
+      dataPreEvent.page = 2
+      generatePreEventPage()
+      handleCountDown()
+      break;
+
+    case 'add-reminder':
+      handleAddReminder($this)
+      break;
+
+    case 'delete-reminder':
+      handleDeleteReminder($this)
+      break;
+
+    case 'login':
+      handleLoginToReminder($this)
+      break;
+
+    default:
+      break;
+  }
+})
+
+function handleAddReminder(target) {
+  target.text('Hapus Pengingat')
+    .removeClass('unf-btn--primary')
+    .addClass('unf-btn--secondary unf-btn--secondary__green')
+    .data('type', 'delete-reminder')
+  showToaster(
+    'Pengingat berhasil terpasang. Notifikasi akan dikirim saat NET. Play dimulai.'
+  );
+  dataPreEvent.reminder = true
+}
+function handleDeleteReminder(target) {
+  target.text('Ingatkan Saya')
+    .removeClass('unf-btn--secondary unf-btn--secondary__green')
+    .addClass('unf-btn--primary')
+    .data('type', 'add-reminder')
+  dataPreEvent.reminder = false
+}
+function handleLoginToReminder(target) {
+  handleAddReminder(target)
+  dataPreEvent.login = true
+}
+
+// timer
+var h = '00'
+var h2 = '00'
+var m = '00'
+var m2 = '00'
+var s = '00'
+var s2 = '00'
+var timeInterval
+var timeDiff
+
+function handleCountDown() {
+  getTime();
+
+  if(timeDiff <= 0){
+    $('.time-counter--container').html(`NET Play sudah dimulai. (ke group chat)`)
+  }
+
+  $('#counter-hour-1 div:last-child').text(h[0])
+  $('#counter-hour-2 div:last-child').text(h[1])
+  $('#counter-minute-1 div:last-child').text(m[0])
+  $('#counter-minute-2 div:last-child').text(m[1])
+  $('#counter-second-1 div:last-child').text(s[0])
+  $('#counter-second-2 div:last-child').text(s[1])
+  h2 = h
+  m2 = m
+  s2 = s
+
+  timeInterval = setInterval(function () {
+    getTime();
+
+    if (h === '00' && m === '00' && s === '00') {
+      handleTimeDone()
+      clearInterval(timeInterval)
+    }
+    else {
+      checkDigitChange()
+    }
+  }, 1)
+
+}
+
+function getTime() {
+  timeDiff = new Date(dataPreEvent.time) - new Date()
+  var hour = timeDiff / (1000 * 3600)
+  var minute = (hour - Math.floor(hour)) * 60
+  var second = (minute - Math.floor(minute)) * 60
+
+  h = (Math.floor(hour) < 10) ? `0${Math.floor(hour)}` : Math.floor(hour).toString()
+  m = (Math.floor(minute) < 10) ? `0${Math.floor(minute)}` : Math.floor(minute).toString()
+  s = (Math.floor(second) < 10) ? `0${Math.floor(second)}` : Math.floor(second).toString()
+}
+
+function checkDigitChange() {
+
+  if (h !== h2) {
+    if (h[0] !== h2[0]) {
+      $('#counter-hour-1 div:first-child').text(h[0])
+      animateTimer('#counter-hour-1', 'h')
+    }
+    if (h[1] !== h2[1]) {
+      $('#counter-hour-2 div:first-child').text(h[1])
+      animateTimer('#counter-hour-2', 'h')
+    }
+  }
+
+  if (m !== m2) {
+    if (m[0] !== m2[0]) {
+      $('#counter-minute-1 div:first-child').text(m[0])
+      animateTimer('#counter-minute-1', 'm')
+    }
+    if (m[1] !== m2[1]) {
+      $('#counter-minute-2 div:first-child').text(m[1])
+      animateTimer('#counter-minute-2', 'm')
+    }
+  }
+
+  if (s !== s2) {
+    if (s[0] !== s2[0]) {
+      $('#counter-second-1 div:first-child').text(s[0])
+      animateTimer('#counter-second-1', 's')
+    }
+    if (s[1] !== s2[1]) {
+      $('#counter-second-2 div:first-child').text(s[1])
+      animateTimer('#counter-second-2', 's')
+    }
+  }
+  h2 = h
+  m2 = m
+  s2 = s
+}
+
+function animateTimer(target, type) {
+  var timeout = 900;
+  $(target).addClass('animate-timer')
+
+  setTimeout(() => {
+    $(target).removeClass('animate-timer')
+
+    switch (type) {
+      case 'h':
+        $('#counter-hour-1 div:last-child').text(h[0])
+        $('#counter-hour-2 div:last-child').text(h[1])
+        break;
+
+      case 'm':
+        $('#counter-minute-1 div:last-child').text(m[0])
+        $('#counter-minute-2 div:last-child').text(m[1])
+        break;
+
+      case 's':
+        $('#counter-second-1 div:last-child').text(s[0])
+        $('#counter-second-2 div:last-child').text(s[1])
+        break;
+
+      default:
+        break;
+    }
+
+  }, timeout);
+}
+
+function handleTimeDone() {
+  dataPreEvent.page = 1;
+  generatePreEventPage();
 }
