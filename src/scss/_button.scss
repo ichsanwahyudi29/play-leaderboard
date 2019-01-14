@@ -22,10 +22,22 @@
     }
   }
 
+  &--medium{
+    font-size: 13px;
+    height: 40px;
+    line-height: 24px;
+    padding: 8px 16px;
+  }
+
   &--small{
     font-size: 0.85714rem;
     height: 32px;
     line-height: 16px;
+  }
+
+  &--block{
+    width: 100%;
+    display: block;
   }
 
   &--transparent{
@@ -45,5 +57,9 @@
   &--secondary{
     color: $blackDisabled;
     border: solid $grayBorder 1px;
+    &__green{
+      border-color: $green;
+      color: $green;
+    }
   }
 }
