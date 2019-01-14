@@ -86,6 +86,14 @@ const webpackConfig = {
       template: './src/index.html',
       filename: 'index.html',
     }),
+    new HtmlWebpackPlugin({
+      template: './src/pre-event.html',
+      filename: 'pre-event.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/pre-event_typeform.html',
+      filename: 'pre-event_typeform.html',
+    }),
     new MiniCssExtractPlugin({
       filename: isProduction ? '[name].[contenthash].min.css' : '[name].css',
       chunkFilename: '[id].css',
